@@ -1,7 +1,10 @@
 # Book-Exchange-System
 
 # Introduction
-The Book Exchange System is a comprehensive web application designed to address the pervasive issue of unused books accumulating in households and potentially ending up in landfills. With millions of books discarded annually, the system aims to mitigate environmental pollution and resource waste while also addressing financial constraints faced by individuals due to the rising cost of new books.
+In today's world, many old books end up forgotten on shelves, unused and unloved. Some are thrown away, while others are sold to collectors or second-hand shops. But often, a book that one person doesn't want anymore could be exactly what someone else is looking for. Our system helps fix this by letting people swap books they no longer need for ones they really want.
+But there's more to the problem. New books are getting really expensive, so many people can't afford them. This means more books end up in the trash each year, adding to the big piles of waste. Even when we try to recycle them, it's not easy. Recycling books takes a lot of energy and money, and it can make the paper worse quality. So, sending books off to be recycled isn't always the best solution.
+
+Our system tries to tackle these problems in a simple way. We encourage people to swap books instead of throwing them away. By doing this, we can cut down on waste and make sure good books find new homes. It's a small step, but it can make a big difference in helping the environment and making sure everyone has access to books they love.
 
 # Problem Scenario
 In today's society, the disposal of books poses significant challenges, ranging from environmental concerns to financial barriers. Millions of books are discarded annually, contributing to environmental pollution and resource waste. Moreover, the escalating prices of new books make it increasingly difficult for some individuals to afford them. Additionally, traditional book recycling processes are marred by energy inefficiencies, costliness, and quality degradation, further exacerbating the problem.
