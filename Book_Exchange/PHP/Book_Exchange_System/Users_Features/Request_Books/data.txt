@@ -1,0 +1,109 @@
+<!-- Database mah haleko value fetch garera dekhauna table ma (Database ko data read garney rah dekhauney)
+ -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> 
+ <link rel="stylesheet" href="../../styles.css">
+ <?php
+//  include "../../header.php";
+ 
+ 
+
+ session_start();
+//  print_r($_SESSION);
+?>
+
+
+
+<div id="main-content">
+    <h2>My Requests</h2>
+    
+    <?php  /* for connection */
+    $conn = mysqli_connect("localhost", "root", "", "book_exchange_system") or die("Connection failed"); /* for connection */
+    $sql = "SELECT * FROM `request_details` WHERE User_Id={$_SESSION['Select_user']}";   /* "SELECT * FROM student JOIN studentclass WHERE student.sclass = studentclass.cid"; */
+    $result = mysqli_query($conn, $sql) or die("Query uncessfull");
+    if(mysqli_num_rows($result)>0){                        /* kati number of rows cha database ma tei dekhaucha lincha so result print garda [num_rows] => 2 dekhaucha*/
+    ?>
+
+    <table cellpadding="7   px">
+        <thead>
+            <th>My Requests</th>
+            <th>Request Status</th>
+            <th>Action</th>
+           
+        </thead>
+        <tbody>
+            <?php 
+            // echo("i love you");
+            // print_r($result) ; /* or we can also use echo var_dump($result); */
+            // echo ('<br>');
+            
+     
+            while($row = mysqli_fetch_assoc($result)){
+                //    print_r($row);        /*   aassociative array ko form mah aucha */
+               echo $status=$row['Request_Status'];
+            ?>
+            <tr>
+                <td><?php
+                
+                $sql_1 = "SELECT Owner_Id, Owned_Book_Title FROM `book_details` WHERE Post_ID= {$row['Post_Owner_Id']}";
+                $result_1 = mysqli_query($conn, $sql_1) or die("Query uncessfull");
+                
+
+                while ($row_1= mysqli_fetch_assoc($result_1)) {
+                       $Receiver_Id= $row_1['Owner_Id'];
+                      $Receiver_Book= $row_1['Owned_Book_Title'];
+                    
+                    $sql_2 = "SELECT Name FROM `users` WHERE User_Id= $Receiver_Id ";
+                    $result_2 = mysqli_query($conn, $sql_2) or die("Query uncessfull");
+                     
+                    while ($row_2= mysqli_fetch_assoc($result_2)) {
+                            $Receiver_Name= $row_2['Name'];
+                       
+
+                       
+                    }
+
+                 
+                
+                    
+                }
+                
+                
+                
+                
+                echo "You have sended Request to " . " " . $Receiver_Name . "  For his book named as " . $Receiver_Book ?></td>
+                <td><?php 
+                if($status=" "){
+                echo "No Action"; }
+                else{
+                    echo ($status);
+                }
+                
+                
+                ?> </td>
+                
+                <td>
+                    <a href='edit.php?id=<?php echo  ($row['User_Id']) ;?>'>Cancel</a>     <!-- id attribute ho can be named anything -->
+                    
+                    <a href='delete_myself.php?delete_id=<?php echo ($row['User_Id']);?>'>Delete</a>
+                </td>
+            </tr>
+                <?php } ?>
+            </tbody>
+    </table>
+    <?php } 
+    else{
+        echo" <h2>Sorry you havent send any requests.</h2>";     /* yedi rows eutai pani chaina bhaney $result ma */ 
+    }
+    mysqli_close($conn);                     /* connection lai close gareko */
+     ?> 
+</div>
+
+
+</body>
+<div class="col-sm-3  d-grid">
+                 <a class="btn btn-info btn-lg btn-block" value="login_button"  href='../Book_Exchange_System/login.php' role="button">Logout</a>
+            </div>
+</div>
+
+
+</html>
